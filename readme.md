@@ -1,0 +1,1 @@
+A Rust based desktop app for note taking and a second brain. Open source, PR friendly.
