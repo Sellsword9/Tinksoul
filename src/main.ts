@@ -1,22 +1,38 @@
 import { invoke } from "@tauri-apps/api/tauri";
 
-let greetInputEl: HTMLInputElement | null;
-let greetMsgEl: HTMLElement | null;
+let editor: HTMLTextAreaElement = document.getElementById("editor") as HTMLTextAreaElement;
+let preview = document.getElementById("preview");
 
-async function greet() {
-  if (greetMsgEl && greetInputEl) {
-    // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-    greetMsgEl.textContent = await invoke("greet", {
-      name: greetInputEl.value,
+async function marked() {
+  if (editor && preview) {
+    preview.innerHTML = await invoke("test_md", {
+      md: editor.value,
     });
   }
 }
+editor.addEventListener("input", marked);
 
-window.addEventListener("DOMContentLoaded", () => {
-  greetInputEl = document.querySelector("#greet-input");
-  greetMsgEl = document.querySelector("#greet-msg");
-  document.querySelector("#greet-form")?.addEventListener("submit", (e) => {
+// Command line
+
+const inputField = document.getElementById('command')! as HTMLInputElement;
+const CommAnimationClass = 'CommAnimated';
+
+function commandInput(command: String): void{
+  inputField.value = "";
+  //todo: Send command to tauri to use match structure to run command if possible
+  console.log(command);
+}
+
+inputField.addEventListener('keydown', (e: KeyboardEvent) => {
+  inputField.classList.remove(CommAnimationClass);
+  if ((e.key === 'Enter') && inputField.value != "") {
+    commandInput(inputField.value);
     e.preventDefault();
-    greet();
-  });
+    e.stopPropagation();
+  }
+
+});
+inputField.addEventListener('blur', () => {
+  inputField.classList.add(CommAnimationClass);
+  inputField.value = "";
 });
