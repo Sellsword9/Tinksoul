@@ -2,20 +2,27 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 // imports
 use markdown;
+use std::{io::Write, fs::File};
+use tauri::{command, generate_handler, Builder};
+const PREVIEW_PATH: &str = "../temp/preview.md";
+
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-#[tauri::command]
-fn test_md(md: &str) -> String {
+#[command]
+fn markdownize(md: &str) -> String {
+    let mut preview_file = File::create(PREVIEW_PATH).expect("Unable to create file 1");
+    File::write(&mut preview_file, md.as_bytes()).expect("Unable to write file to disk 2");
     markdown::to_html(md)
 }
-#[tauri::command]
+#[command]
 fn close(md: &str) -> () {
     std::process::exit(1);
 }
 
 fn main() {
-    tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![test_md])
+    
+    Builder::default()
+        .invoke_handler(generate_handler![markdownize, close])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

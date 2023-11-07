@@ -5,7 +5,7 @@ let preview = document.getElementById("preview");
 
 async function marked() {
   if (editor && preview) {
-    preview.innerHTML = await invoke("test_md", {
+    preview.innerHTML = await invoke("markdownize", {
       md: editor.value,
     });
   }
@@ -36,3 +36,5 @@ inputField.addEventListener('blur', () => {
   inputField.classList.add(CommAnimationClass);
   inputField.value = "";
 });
+
+// Todo?: Add a way to get the current directory and display it in the command line

@@ -47,3 +47,6 @@ dist-ssr
 *.ico
 *icon.*
 *.svg
+
+# App data files
+/temp**
