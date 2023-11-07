@@ -15,10 +15,9 @@ fn markdownize(md: &str) -> String {
     markdown::to_html(md)
 }
 #[command]
-fn close(md: &str) -> () {
+fn close() -> () {
     std::process::exit(1);
 }
-
 fn main() {
     
     Builder::default()
