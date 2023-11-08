@@ -12,6 +12,7 @@ const PREVIEW_PATH: &str = "../temp/preview.md";
 fn markdownize(md: &str) -> String {
     let mut preview_file = File::create(PREVIEW_PATH).expect("Unable to create file 1");
     File::write(&mut preview_file, md.as_bytes()).expect("Unable to write file to disk 2");
+    //fixme: Markdown crashes on "* "
     markdown::to_html(md)
 }
 #[command]
