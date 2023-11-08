@@ -1,8 +1,12 @@
 :root
 {
-  background-color: #444;
-  color: cornflowerblue;
+  background-color: #3c3c3c;
+  color: wheat;
 
+}
+.hiddenClass
+{
+  display: none !important;
 }
 .container
 {
@@ -12,7 +16,7 @@
   "head  head"
   "write preview";
   grid-template-columns: 50% 50%;
-  grid-template-rows:  20% 80%;
+  grid-template-rows:  auto 70%;
 }
 header
 {
@@ -20,10 +24,36 @@ header
   display: grid;
   justify-content: center;
   align-items: center;
-  grid-template-areas: "title open save"
-                       "title comm comm";
+  grid-template-areas: "title open comm"
+                       "title brain brain"
+                       "title save save";
   grid-template-columns: 20% 60% 20%;
-  grid-template-rows: 20% 80%;    
+  grid-template-rows: 30% 40% 30%;
+  max-height: 15rem;    
+}
+header .brain
+{
+  grid-area: brain;
+  display: grid;
+}
+.brain input[type=text]
+{
+  background-color: #222;
+  color: wheat;
+}
+.brain button
+{
+  background-color: #888;
+  color: rgb(255, 255, 255);
+  border-radius: 2rem;
+  width: 40%;
+  margin: 0 auto;
+  margin-top: 0.5rem;
+  &:hover
+  {
+    background-color: wheat;
+    color: rgb(255, 255, 255);
+  }
 }
 header .open
 {
@@ -51,11 +81,12 @@ header #command
   background-color: black;
   overflow: hidden;
   color: wheat;
+  height: 80%;
 }
 header .CommAnimated
 {
   background-image: url(./assets/images/comm.png);
-  animation: textMove 4s ease-in-out 1s infinite both;
+  animation: textMove 8s ease-in 1s infinite both;
   background-size: contain;
   background-repeat: no-repeat;
   overflow: hidden;
@@ -69,20 +100,25 @@ header .CommAnimated
   }
   100%
   {
-    background-position: 40rem;
+    background-position: 160rem;
   }
+}
+#editor, #preview
+{
+  overflow: auto;
+  max-height: max-content;
 }
 #editor
 {
   grid-area: write;
   resize: none;
   min-height: max-content;
-  background-color: #444;
-  color: cornflowerblue;
+  background-color: #3c3c3c;
+  color: wheat;
 }
 #preview
 {
-  color: skyblue;
+  color: wheat;
   grid-area: preview;
   border: 1px solid salmon;
   min-height: max-content;

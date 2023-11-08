@@ -19,7 +19,7 @@ const CommAnimationClass = 'CommAnimated';
 
 function commandInput(command: String): void{
   inputField.value = "";
-  //todo: Send command to tauri to use match structure to run command if possible
+  // todo: Send command to tauri to use match structure to run command if possible
   console.log(command);
 }
 
@@ -37,4 +37,34 @@ inputField.addEventListener('blur', () => {
   inputField.value = "";
 });
 
-// Todo?: Add a way to get the current directory and display it in the command line
+// Save file part
+
+const saveButton = document.getElementById('save-btn')! as HTMLButtonElement;
+
+saveButton.addEventListener('click', () => {
+  invoke('save_file', {
+    content: editor.value,
+  });
+});
+
+// Brain part
+const brainInput = 
+document.getElementById('brainpath')! as HTMLInputElement;
+const brainButton = 
+document.getElementById('brain-btn')! as HTMLButtonElement;
+// When focused, show button
+brainInput.addEventListener('focus', () => {
+  brainButton.classList.remove("hiddenClass");
+});
+
+brainInput.addEventListener('keydown', (e: KeyboardEvent) => {
+  if ((e.key === 'Enter') && brainInput.value != "") 
+  {
+    brainButton.click();
+    e.preventDefault();
+    e.stopPropagation();
+  }
+});
+brainInput.addEventListener('blur', () => {
+  brainButton.classList.add("hiddenClass");
+});

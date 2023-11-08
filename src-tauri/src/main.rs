@@ -10,14 +10,18 @@ const PREVIEW_PATH: &str = "../temp/preview.md";
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[command]
 fn markdownize(md: &str) -> String {
-    let mut preview_file = File::create(PREVIEW_PATH).expect("Unable to create file 1");
-    File::write(&mut preview_file, md.as_bytes()).expect("Unable to write file to disk 2");
+    save_file(md, PREVIEW_PATH);
     //fixed: Markdown crashes on "* "
     markdown::to_html(md)
 }
 #[command]
 fn close() -> () {
     std::process::exit(1);
+}
+#[command]
+fn save_file(f: &str, p: &str) -> () {
+    let mut file: File = File::create(p).expect("Unable to create file");
+    File::write(&mut file, f.as_bytes()).expect("Unable to write file to disk");
 }
 fn main() {
     
