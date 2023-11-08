@@ -19,7 +19,7 @@ const CommAnimationClass = 'CommAnimated';
 
 function commandInput(command: String): void{
   inputField.value = "";
-  // todo: Send command to tauri to use match structure to run command if possible
+  // TODO: Send command to tauri to use match structure to run command if possible
   console.log(command);
 }
 
