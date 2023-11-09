@@ -9,6 +9,12 @@ const PREVIEW_PATH: &str = "../temp/preview.md";
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[command]
+fn setup() -> bool
+{
+    File::create("../brains/brain0.tksbrain").expect("Unable to create file");
+    return true;
+}
+#[command]
 fn markdownize(md: &str) -> String {
     save_file(md, PREVIEW_PATH);
     //fixed: Markdown crashes on "* "
@@ -26,7 +32,7 @@ fn save_file(f: &str, p: &str) -> () {
 fn main() {
     
     Builder::default()
-        .invoke_handler(generate_handler![markdownize, close])
+        .invoke_handler(generate_handler![markdownize, close, save_file, setup])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

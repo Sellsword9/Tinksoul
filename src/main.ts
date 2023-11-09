@@ -68,3 +68,8 @@ brainInput.addEventListener('keydown', (e: KeyboardEvent) => {
 brainInput.addEventListener('blur', () => {
   brainButton.classList.add("hiddenClass");
 });
+
+
+
+// File setup
+document.addEventListener('DOMContentLoaded', () => invoke('setup'));
