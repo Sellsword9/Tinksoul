@@ -17,7 +17,6 @@ fn setup() -> bool
 #[command]
 fn markdownize(md: &str) -> String {
     save_file(md, PREVIEW_PATH);
-    //fixed: Markdown crashes on "* "
     markdown::to_html(md)
 }
 #[command]
