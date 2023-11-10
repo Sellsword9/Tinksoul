@@ -9,7 +9,7 @@
 - [Node.js](https://nodejs.org/en/download/)
 - [git](https://git-scm.com/downloads)
 ### Fast commands:
-In any terminal, with git installed, run this:
+In any bash, with git installed, run this:
 ```bash
 git clone https://github.com/sellsword9/tinksoul && cd tinksoul && npm i && cd src-tauri && cargo build && cd .. && mkdir temp && mkdir brains && npm run tauri dev
 ```
@@ -39,11 +39,11 @@ npm run tauri dev
 
 
 
-Icon notice: The icon of the app is needed for the thing to compile and work. 
+Icon notice: A icon for the app is needed for the thing to compile and work. 
 Short version:
 The logo is made with AI. I own it. You can use it. Don't trademark it.
 Long version:
-I have updated to the repository a icon image I made with AI. It is NEEDED for the app to build, as of now.
+I have updated to the repository a icon image I made with AI. A icon (this one or any other) is NEEDED for the app to build, as of now.
 You can use the same logo as long as you don't trademark it.
 According to OpenAI terms, I own it, so no problem.
 Legally speaking, as I own the icon, I ask you to not trademark it and then sue me for using my own icon, please. 
