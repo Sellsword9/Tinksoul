@@ -46,9 +46,8 @@ dist-ssr
 # IDE - VSCode
 .vscode/*
 
-# Images will not be commited until production
+# Images will not be commited until production 
+#  except for the icon that literally is required for the app to run somehow
 *.png
 *.jpg
-*.ico
-*icon.*
 *.svg
