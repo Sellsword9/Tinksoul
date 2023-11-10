@@ -7,7 +7,13 @@
 ### Prerequisites:
 - [Rust](https://www.rust-lang.org/tools/install)
 - [Node.js](https://nodejs.org/en/download/)
-- [npm](https://www.npmjs.com/get-npm)
+- [git](https://git-scm.com/downloads)
+### Fast commands:
+In any terminal, with git installed, run this:
+```bash
+git clone https://github.com/sellsword9/tinksoul && cd tinksoul && npm i && cd src-tauri && cargo build && cd .. && mkdir temp && mkdir brains && npm run tauri dev
+```
+
 
 ### Steps:
 1. Clone the repository.
@@ -30,6 +36,7 @@ mkdir temp && mkdir brains
 ```bash
 npm run tauri dev
 ```
+
 
 
 Icon notice: The icon of the app is needed for the thing to compile and work. 
