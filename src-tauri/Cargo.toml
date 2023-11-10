@@ -1,10 +1,10 @@
 [package]
 name = "tinksoul"
-version = "0.0.0"
-description = "A Tauri App"
+version = "0.0.1"
+description = "A markdown second-brain builder"
 authors = ["Yeray Romero"]
-license = ""
-repository = ""
+license = "MIT"
+repository = "www.github.com/Sellsword9/tinksoul"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
