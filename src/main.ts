@@ -1,5 +1,7 @@
 import { invoke } from "@tauri-apps/api/tauri";
 
+// todo: Handle all ! assigments better
+
 let editor: HTMLTextAreaElement = document.getElementById("editor") as HTMLTextAreaElement;
 let preview = document.getElementById("preview");
 
@@ -49,26 +51,41 @@ saveButton.addEventListener('click', () => {
 
 // Brain part
 const brainInput = 
-document.getElementById('brainpath')! as HTMLInputElement;
+document.getElementById('brainpath')! as HTMLInputElement; // The value here is used at Saving
 const brainButton = 
 document.getElementById('brain-btn')! as HTMLButtonElement;
-// When focused, show button
-brainInput.addEventListener('focus', () => {
-  brainButton.classList.remove("hiddenClass");
-});
+        
+      // When focused, show button
+      brainInput.addEventListener('focus', () => {
+        brainButton.classList.remove("hiddenClass");
+      });
 
-brainInput.addEventListener('keydown', (e: KeyboardEvent) => {
-  if ((e.key === 'Enter') && brainInput.value != "") 
-  {
-    brainButton.click();
-    e.preventDefault();
-    e.stopPropagation();
+      brainInput.addEventListener('keydown', (e: KeyboardEvent) => {
+        if ((e.key === 'Enter') && brainInput.value != "") 
+        {
+          brainButton.click();
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      });
+      brainInput.addEventListener('blur', () => {
+        brainButton.classList.add("hiddenClass");
+      });
+
+
+// Save file
+const saveFileInput = document.getElementById('saveText')! as HTMLInputElement;
+brainButton.addEventListener('click', () => {
+  if (saveFileInput.value === "") {
+    // FIXME: Show error somehow
+  }else{
+    invoke('save_on_brain', {
+      filename: saveFileInput.value,
+      brainpath: brainInput.value,
+      content: editor.value,
+    });
   }
 });
-brainInput.addEventListener('blur', () => {
-  brainButton.classList.add("hiddenClass");
-});
-
 
 
 // File setup
