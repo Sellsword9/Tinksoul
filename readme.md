@@ -3,6 +3,34 @@
 ## License: [Tinksoul](LICENSES/LICENSE.md)
 ## Licenses for the software used in this project: [Licenses](LICENSES/readme.md)
 ### This proyect is still not ready for a stable build. I'm working on it on myself but PR's are welcome.
+## How to build:
+### Prerequisites:
+- [Rust](https://www.rust-lang.org/tools/install)
+- [Node.js](https://nodejs.org/en/download/)
+- [npm](https://www.npmjs.com/get-npm)
+
+### Steps:
+1. Clone the repository.
+```bash
+git clone www.github.com/Sellsword9/tinksoul
+```
+2. Go to the repository folder.
+```bash
+cd tinksoul
+```
+3. Install the dependencies.
+```bash
+npm i && cd src-tauri && cargo build && cd ..
+```
+4. Make some needed folders. (May be fixed)
+```bash
+mkdir temp && mkdir brains
+```
+5. Build the app.
+```bash
+npm run tauri dev
+```
+
 
 Icon notice: The icon of the app is needed for the thing to compile and work. 
 Short version:
