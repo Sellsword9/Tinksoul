@@ -6,4 +6,5 @@ The licenses are in the form of markdown files. The licenses are as follows:
 - [Markdown-rs](LICENSE-markdown-rs.md) - MIT License
 - [Tauri](LICENSE-tauri.md) - MIT License
 - [Vite](LICENSE-vite.md) - MIT License
-
+- [Rust](LICENSE-rust.md) - MIT License
+- [TypeScript](LICENSE-typescript.md) - Apache License 2.0
