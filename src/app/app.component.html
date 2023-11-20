@@ -1,0 +1,33 @@
+<div class="container">
+
+  <header>
+    <h1>Tinksoul</h1>
+    <!-- The component for opening a file-->
+    <div class="open">
+      <label for="open">Open file...</label>
+      <input type="file" id="open" accept=".md" />
+      <!-- TODO -->
+    </div>
+    <!-- The component for choosing what name will be used to save-->
+    <div class="save">
+      <button id="save-btn">📁</button>
+      <label for="save">Save file as &rarr;</label>
+      <input type="text" id="saveText" />
+      <label for="autosave">Autosave?</label>
+      <input type="checkbox" id="autosave" />
+    </div>
+    <!-- The component for choosing WHERE to work-->
+    <div class="brain">
+      <label for="brainroot">Brain:</label>
+      <input type="file" id="brainroot" accept=".tksbrain" />
+      <label for="brainpath">Path to new file:</label>
+      <input type="text" id="brainpath" />
+      <button id="brain-btn" class="hiddenClass">Create the new brain</button>
+    </div>
+    <!-- The command line-->
+    <!-- <input class="CommAnimated" type="text" id="command" /> -->
+  </header>
+  <textarea id="editor"></textarea>
+  <div id="preview"></div>
+
+</div>

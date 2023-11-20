@@ -1,13 +1,13 @@
 {
   "build": {
-    "beforeDevCommand": "npm run dev",
+    "beforeDevCommand": "npm run start -- --port 1420",
     "beforeBuildCommand": "npm run build",
     "devPath": "http://localhost:1420",
-    "distDir": "../dist",
-    "withGlobalTauri": true
+    "distDir": "../dist/soultinker",
+    "withGlobalTauri": false
   },
   "package": {
-    "productName": "tinksoul",
+    "productName": "soultinker",
     "version": "0.0.0"
   },
   "tauri": {
@@ -37,7 +37,7 @@
       {
         "fullscreen": false,
         "resizable": true,
-        "title": "tinksoul",
+        "title": "soultinker",
         "width": 800,
         "height": 600
       }
