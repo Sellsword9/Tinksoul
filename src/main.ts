@@ -1,3 +1,4 @@
+import { save } from "@tauri-apps/api/dialog";
 import { invoke } from "@tauri-apps/api/tauri";
 
 // todo: Handle all ! assigments better
@@ -19,7 +20,7 @@ editor.addEventListener("input", marked);
 const inputField = document.getElementById('command')! as HTMLInputElement;
 const CommAnimationClass = 'CommAnimated';
 
-function commandInput(command: String): void{
+function commandInput(command: String): void {
   inputField.value = "";
   // TODO: Send command to tauri to use match structure to run command if possible
   console.log(command);
@@ -49,28 +50,40 @@ saveButton.addEventListener('click', () => {
   });
 });
 
-// Brain part
-const brainInput = 
-document.getElementById('brainpath')! as HTMLInputElement; // The value here is used at Saving
-const brainButton = 
-document.getElementById('brain-btn')! as HTMLButtonElement;
-        
-      // When focused, show button
-      brainInput.addEventListener('focus', () => {
-        brainButton.classList.remove("hiddenClass");
-      });
+const saveNameInput = document.getElementById('saveText')! as HTMLInputElement;
+const download_btn = document.getElementById('download-btn')
+saveNameInput.addEventListener('input', () => {
+  if (saveNameInput.value.includes(".md")) {
+    saveNameInput.value = saveNameInput.value.replace(".md", "");
+  }
+  let download_str = saveNameInput.value + ".md";
+  if (download_str === ".md") {
+    download_str = "untitled.md";
+  }
+  download_btn!.setAttribute('download', download_str);
+})
 
-      brainInput.addEventListener('keydown', (e: KeyboardEvent) => {
-        if ((e.key === 'Enter') && brainInput.value != "") 
-        {
-          brainButton.click();
-          e.preventDefault();
-          e.stopPropagation();
-        }
-      });
-      brainInput.addEventListener('blur', () => {
-        brainButton.classList.add("hiddenClass");
-      });
+// Brain part
+const brainInput =
+  document.getElementById('brainpath')! as HTMLInputElement; // The value here is used at Saving
+const brainButton =
+  document.getElementById('brain-btn')! as HTMLButtonElement;
+
+// When focused, show button
+brainInput.addEventListener('focus', () => {
+  brainButton.classList.remove("hiddenClass");
+});
+
+brainInput.addEventListener('keydown', (e: KeyboardEvent) => {
+  if ((e.key === 'Enter') && brainInput.value != "") {
+    brainButton.click();
+    e.preventDefault();
+    e.stopPropagation();
+  }
+});
+brainInput.addEventListener('blur', () => {
+  brainButton.classList.add("hiddenClass");
+});
 
 
 // Save file
@@ -78,7 +91,7 @@ const saveFileInput = document.getElementById('saveText')! as HTMLInputElement;
 brainButton.addEventListener('click', () => {
   if (saveFileInput.value === "") {
     // FIXME: Show error somehow
-  }else{
+  } else {
     invoke('save_on_brain', {
       filename: saveFileInput.value,
       brainpath: brainInput.value,
