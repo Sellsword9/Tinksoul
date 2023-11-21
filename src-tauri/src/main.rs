@@ -1,17 +1,20 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
+
 // imports
 mod brainparser;
-use brainparser::get_brain_path;
 use markdown;
-use std::{fs::File, io::Write};
+use std::{io::Write, fs::File};
 use tauri::{command, generate_handler, Builder};
+use brainparser::get_brain_path;
 const PREVIEW_PATH: &str = "../temp/preview.md";
+
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[command]
-fn setup() -> bool {
+fn setup() -> bool
+{
     File::create("../brains/brain0.tksbrain").expect("Unable to create file");
     return true;
 }
@@ -24,16 +27,10 @@ fn markdownize(md: &str) -> String {
 fn close() -> () {
     std::process::exit(1);
 }
-/**
- * @param filename: The name of the file to save. For example: "readme" (would save as readme.md)
- * @param brainpath: The path to the brain file. For example: "C:/Users/username/Documents/brain.tksbrain"
- * @param content: The content to save, in plain text. For example: "# Hello world"
- */
 #[command]
 fn save_on_brain(filename: &str, brainpath: &str, content: &str) -> bool {
-    print!("Trace: {}, {}, {}", filename, brainpath, content);
-    let real_path: String = get_brain_path(brainpath);
-    let real_name: String = format!("{}/{}.md", real_path, filename);
+   let real_path: String = get_brain_path(brainpath);
+   let real_name: String = format!("{}/{}.md", real_path, filename);
     save_file(content, &real_name);
     return true;
 }
@@ -53,23 +50,23 @@ pub fn main() {
 mod tests {
     use crate::brainparser::get_brain_path;
 
-    #[test]
-    fn test_get_brain_path() {
-        let x = get_brain_path("C:/Users/username/Documents/brain.tksbrain");
-        assert_eq!(x, "C:/Users/username/Documents");
-    }
-    #[test]
-    fn test_get_brain_path2() {
-        let x = get_brain_path("./username/Documents/brain12123.tksbrain");
-        assert_eq!(x, "./username/Documents");
-    }
-    #[test]
-    #[should_panic(expected = "Not a brain file")]
-    fn test_get_brain_path3() {
-        get_brain_path("./username/Documents/");
-    }
-    // Let copilot create more tests
-    #[test]
+  #[test]
+  fn test_get_brain_path() {
+    let x = get_brain_path("C:/Users/username/Documents/brain.tksbrain");
+    assert_eq!(x, "C:/Users/username/Documents");
+  }
+  #[test]
+  fn test_get_brain_path2() {
+    let x = get_brain_path("./username/Documents/brain12123.tksbrain");
+    assert_eq!(x, "./username/Documents");
+  }
+  #[test]
+#[should_panic(expected = "Not a brain file")]
+  fn test_get_brain_path3() {
+    get_brain_path("./username/Documents/");
+  }
+  // Let copilot create more tests
+  #[test]
     fn test_get_brain_path4() {
         let x = get_brain_path("C:/Users/username/Documents/brain.tksbrain");
         assert_eq!(x, "C:/Users/username/Documents");
@@ -91,9 +88,7 @@ mod tests {
     }
     #[test]
     fn test_get_brain_path_long() {
-        let x = get_brain_path(
-            "./username/username/username/hola/doc/username/braintsstsdfsdfsdf.tksbrain",
-        );
+        let x = get_brain_path("./username/username/username/hola/doc/username/braintsstsdfsdfsdf.tksbrain");
         assert_eq!(x, "./username/username/username/hola/doc/username");
     }
 }

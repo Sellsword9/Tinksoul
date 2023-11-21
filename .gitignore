@@ -46,46 +46,8 @@ dist-ssr
 # IDE - VSCode
 .vscode/*
 
-# Images will not be commited until production
+# Images will not be commited until production 
 #  except for the icon that literally is required for the app to run somehow
 *.png
 *.jpg
 *.svg
-
-# Angular
-# See http://help.github.com/ignore-files/ for more about ignoring files.
-
-# .angular
-.angular/**
-# compiled output
-/dist
-/tmp
-/out-tsc
-
-# dependencies
-/node_modules
-
-# IDEs and editors
-/.idea
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
-
-# IDE - VSCode
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-
-# misc
-/.sass-cache
-/connect.lock
-/coverage
-/libpeerconnection.log
-npm-debug.log
-testem.log
-/typings
