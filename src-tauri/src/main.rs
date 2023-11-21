@@ -3,7 +3,7 @@
 
 // imports
 mod brainparser;
-use brainparser::get_brain_path;
+use brainparser::{get_brain_path, MAIN_BRAIN_PATH};
 use markdown;
 use std::{fs::File, io::Write};
 use tauri::{command, generate_handler, Builder};
@@ -12,7 +12,7 @@ const PREVIEW_PATH: &str = "../temp/preview.md";
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[command]
 fn setup() -> bool {
-    File::create("../brains/brain0.tksbrain").expect("Unable to create file");
+    File::create(MAIN_BRAIN_PATH).expect("Unable to create file");
     return true;
 }
 #[command]
@@ -42,6 +42,7 @@ fn save_file(content: &str, p: &str) -> () {
     let mut file: File = File::create(p).expect("Unable to create file");
     File::write(&mut file, content.as_bytes()).expect("Unable to write file to disk");
 }
+
 pub fn main() {
     Builder::default()
         .invoke_handler(generate_handler![markdownize, close, setup, save_on_brain])
