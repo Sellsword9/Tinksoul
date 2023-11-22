@@ -1,10 +1,10 @@
 [package]
-name = "soultinker"
-version = "0.0.0"
-description = "A Tauri App"
-authors = ["you"]
-license = ""
-repository = ""
+name = "Tinksoul"
+version = "0.0.2"
+description = "A markdown based second brain"
+authors = ["Yeray Romero"]
+license = "MIT"
+repository = "www.github.com/sellsword9/tinksoul"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

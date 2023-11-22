@@ -37,7 +37,7 @@ pub fn get_brain_path(b: &str) -> String {
  * @param contain_brains_folder: Whether the return value should be like ./brains/filename.tksbrain instead of ./filename.tksbrain
  * @returns The relative path to the brain file. For example: "./brains/User-Made-Folder/CustomName101.tksbrain"
  */
-fn get_path_of_brain_file(brain: &str, contain_brains_folder: &bool) -> String {
+pub fn get_path_of_brain_file(brain: &str, contain_brains_folder: &bool) -> String {
     // Declare path, which will be ./ or ./brains/. Will be used at return statement
     let mut path: String = String::from("./");
     if *contain_brains_folder {
@@ -65,6 +65,11 @@ fn get_path_of_brain_file(brain: &str, contain_brains_folder: &bool) -> String {
         }
     }
 }
-fn get_clean_path_of_brain_file(brain: &str) -> String {
+pub fn get_clean_path_of_brain_file(brain: &str) -> String {
     return get_path_of_brain_file(brain, &false);
+}
+
+pub fn get_number_of_brain(brain: &str) -> usize {
+    let _ = brain;
+    return 0;
 }

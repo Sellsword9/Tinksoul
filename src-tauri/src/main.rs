@@ -1,11 +1,12 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
-
+// TODO: remove me
+#![allow(dead_code)]
 // imports
 mod brainparser;
-use brainparser::{get_brain_path, MAIN_BRAIN_PATH};
+use brainparser::{get_brain_path, get_number_of_brain, MAIN_BRAIN_PATH};
 use markdown;
-use std::{fs::File, io::Write};
+use std::{fs::File, io::Write}; // fmt::format
 use tauri::{command, generate_handler, Builder};
 const PREVIEW_PATH: &str = "../temp/preview.md";
 
@@ -41,6 +42,13 @@ fn save_on_brain(filename: &str, brainpath: &str, content: &str) -> bool {
 fn save_file(content: &str, p: &str) -> () {
     let mut file: File = File::create(p).expect("Unable to create file");
     File::write(&mut file, content.as_bytes()).expect("Unable to write file to disk");
+}
+
+fn write_path(newpath: &str, filename: &str) -> () {
+    let mut file: File = File::create(MAIN_BRAIN_PATH).expect("Unable to create file");
+    let x = get_number_of_brain(&newpath);
+    let content: String = format!("{} {} {}", x, newpath, filename);
+    file.write(content.as_bytes()).unwrap();
 }
 
 pub fn main() {
