@@ -2,7 +2,7 @@
 # Tinksoul. A markdown second-brain builder. Open source.
 ## License: [Tinksoul](LICENSES/LICENSE.md)
 ## Licenses for the software used in this project: [Licenses](LICENSES/readme.md)
-### This proyect is still not ready for a stable build. I'm working on it on myself but PR's are welcome.
+### This proyect is still not ready for a stable build. I'm working on it on myself but PR's are welcome. Tinksoul is not cross-plataform [at the moment](https://github.com/Sellsword9/Tinksoul/issues/1)
 ## How to build:
 ### Prerequisites:
 - [Rust](https://www.rust-lang.org/tools/install)
