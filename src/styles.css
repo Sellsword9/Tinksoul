@@ -1,16 +1,20 @@
 :root {
   background-color: #3c3c3c;
   color: wheat;
+}
+
+.container {
   display: grid;
   grid-template-areas:
     "header header"
-    "write preview";
-  grid-template-rows: 20% 80%;
-  grid-template-columns: 50% 50%;
+    "editor preview";
+  grid-template-rows: 15vh auto;
+  grid-template-columns: repeat(2, 50%)
 }
 
-header {
+.container>header {
   grid-area: header;
+  font-size: 4rem;
 }
 
 .hiddenClass {
@@ -20,15 +24,16 @@ header {
 
 #editor,
 #preview {
+  font-size: 2.5rem;
   overflow: auto;
   max-height: max-content;
   min-height: 80vh;
+  padding: 1rem;
 }
 
 #editor {
-  grid-area: write;
+  grid-area: editor;
   resize: none;
-  min-height: max-content;
   background-color: #3c3c3c;
   color: wheat;
 }
@@ -37,5 +42,31 @@ header {
   grid-area: preview;
   color: wheat;
   border: 1px solid salmon;
-  min-height: max-content;
+}
+
+
+#command-line {
+  background-color: rgba(0, 0, 0, 0);
+  color: wheat;
+  font-size: 2rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  resize: none;
+
+  &:hover {
+    cursor: crosshair;
+  }
+}
+
+#mode-display {
+  background-color: rgba(0, 0, 0, 0);
+  color: wheat;
+  font-size: 4rem;
+  position: absolute;
+  top: 2rem;
+  right: 0;
+  border: none;
+  resize: none;
 }
