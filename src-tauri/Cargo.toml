@@ -1,5 +1,5 @@
 [package]
-name = "Tinksoul"
+name = "tinksoul"
 version = "0.0.2"
 description = "A markdown based second brain"
 authors = ["Yeray Romero"]

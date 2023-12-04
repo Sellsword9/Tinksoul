@@ -1,11 +1,13 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
-// TODO: remove me
+// TODO: remove us
 #![allow(dead_code)]
+#![allow(unused_imports)]
 // imports
 mod brainparser;
 use brainparser::MAIN_BRAIN_PATH;
 use markdown;
+use serde::de::value::Error;
 use std::{fs::File, io::Write}; // fmt::format
 use tauri::{command, generate_handler, Builder};
 const PREVIEW_PATH: &str = "../temp/preview.md";
@@ -26,8 +28,25 @@ fn close() -> () {
     std::process::exit(1);
 }
 
-fn save_file(content: &str, p: &str) -> () {
-    let mut file: File = File::create(p).expect("Unable to create file");
+//TODO: Move all helper functions outside main --> Main will be used for tauri commands only
+
+#[command]
+fn execute(command: &str) -> () {
+    let mut clean_command: String = command.replace(":", "");
+    clean_command = clean_command.replace(" ", "");
+    clean_command = clean_command.to_lowercase();
+    let c: &str = &clean_command;
+    match c {
+        "q" => close(),
+        "w" => close(), //FIXME
+        _ => {
+            panic!("Command not found");
+        }
+    }
+}
+
+fn save_file(content: &str, path: &str) -> () {
+    let mut file: File = File::create(path).expect("Unable to create file");
     File::write(&mut file, content.as_bytes()).expect("Unable to write file to disk");
 }
 
