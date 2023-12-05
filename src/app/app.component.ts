@@ -9,11 +9,9 @@ import { t } from "@tauri-apps/api/tauri-5afe4a59";
 })
 export class AppComponent implements OnInit {
   mode: string = "Normal";
+  filename: string = new Date().toISOString() + ".md";
   ngOnInit() {
-    // import { save } from "@tauri-apps/api/dialog"
-
     // todo: Handle all ! assigments better
-
     let editor: HTMLTextAreaElement = document.getElementById("editor") as HTMLTextAreaElement;
     let preview = document.getElementById("preview");
 
@@ -54,6 +52,18 @@ export class AppComponent implements OnInit {
       this.mode = "Edit";
     });
 
+    // command line
+    // TODO: Change text color when valid command detected?
+    commandLine.addEventListener("keydown", async (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        let command = commandLine.value;
+        let contentNow = editor.value;
+        let path = this.filename;
+        commandLine.value = "";
+        await invoke('execute', { command, contentNow, path });
+      }
+    });
   }
 }
 

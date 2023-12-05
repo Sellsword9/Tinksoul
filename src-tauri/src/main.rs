@@ -23,7 +23,7 @@ fn markdownize(md: &str) -> String {
     save_file(md, PREVIEW_PATH);
     markdown::to_html(md)
 }
-#[command]
+
 fn close() -> () {
     std::process::exit(1);
 }
@@ -31,14 +31,15 @@ fn close() -> () {
 //TODO: Move all helper functions outside main --> Main will be used for tauri commands only
 
 #[command]
-fn execute(command: &str) -> () {
+fn execute(command: &str, content: &str, filename: &str) -> () {
+    print!("Executing command: {}", command);
     let mut clean_command: String = command.replace(":", "");
     clean_command = clean_command.replace(" ", "");
     clean_command = clean_command.to_lowercase();
     let c: &str = &clean_command;
     match c {
         "q" => close(),
-        "w" => close(), //FIXME
+        "w" => save_file(content, filename),
         _ => {
             panic!("Command not found");
         }
@@ -52,7 +53,7 @@ fn save_file(content: &str, path: &str) -> () {
 
 pub fn main() {
     Builder::default()
-        .invoke_handler(generate_handler![markdownize, close, setup])
+        .invoke_handler(generate_handler![markdownize, execute, setup])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

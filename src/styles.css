@@ -69,4 +69,10 @@
   right: 0;
   border: none;
   resize: none;
+
+  & span p {
+    display: inline;
+    font-size: 2rem;
+    text-align: center;
+  }
 }
