@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "tauri": "tauri"
+    "tauri": "tauri",
+    "tks": "npm i && npm run build && cd src-tauri && cargo build && cd .. && npm run tauri dev"
   },
   "private": true,
   "dependencies": {

@@ -54,10 +54,10 @@
   right: 0;
   border: none;
   resize: none;
+}
 
-  &:hover {
-    cursor: crosshair;
-  }
+#command-line:hover {
+  cursor: crosshair;
 }
 
 #mode-display {
@@ -69,10 +69,10 @@
   right: 0;
   border: none;
   resize: none;
+}
 
-  & span p {
-    display: inline;
-    font-size: 2rem;
-    text-align: center;
-  }
+#mode-display span p {
+  display: inline;
+  font-size: 2rem;
+  text-align: center;
 }

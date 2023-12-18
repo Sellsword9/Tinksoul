@@ -12,11 +12,12 @@ use std::{fs::File, io::Write}; // fmt::format
 use tauri::{command, generate_handler, Builder};
 const PREVIEW_PATH: &str = "../temp/preview.md";
 
+
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[command]
 fn setup() -> bool {
     File::create(MAIN_BRAIN_PATH).expect("Unable to create file");
-    return true;
+    true
 }
 #[command]
 fn markdownize(md: &str) -> String {
