@@ -8,7 +8,7 @@ mod brainparser;
 use brainparser::MAIN_BRAIN_PATH;
 use markdown;
 use serde::de::value::Error;
-use std::{fs::File, io::Write}; // fmt::format
+use std::{fs::File, io::{Write, Read}}; // fmt::format
 use tauri::{command, generate_handler, Builder};
 const PREVIEW_PATH: &str = "../temp/preview.md";
 
@@ -21,7 +21,7 @@ fn setup() -> bool {
 }
 #[command]
 fn markdownize(md: &str) -> String {
-    save_file(md, PREVIEW_PATH);
+    save_file(md, PREVIEW_PATH, false);
     markdown::to_html(md)
 }
 
@@ -34,7 +34,7 @@ fn close() -> () {
 #[command]
 fn execute(command: &str, content: &str, path: &str) -> () {
     let bfolder: &str = brainparser::MAIN_BRAIN_FOLDER;
-    let complete_path: String = format!("{}/{}", bfolder, path);
+    let complete_path: String = format!("{}{}", bfolder, path);
     print!("Executing command: {}", command);
     print!("Content: {}", content);
     print!("Path: {}", complete_path);
@@ -44,14 +44,24 @@ fn execute(command: &str, content: &str, path: &str) -> () {
     let c: &str = &clean_command;
     match c {
         "q" => close(),
-        "w" => save_file(content, complete_path.as_str()),
+        "w" => save_file(content, &complete_path, true),
         _ => {
             panic!("Command not found");
         }
     }
 }
 
-fn save_file(content: &str, path: &str) -> () {
+fn save_file(content: &str, path: &str, should_update: bool) -> () {
+    if should_update {
+        let path_with_eol: String = format!("{}\n", path);
+        let mut openbrain: File = File::open(MAIN_BRAIN_PATH).expect("Unable to open file for reading");
+        let mut buffer: String = String::new();
+        openbrain.read_to_string(&mut buffer).expect("Unable to read file");
+        buffer.push_str(&path_with_eol);
+        let mut brain: File = File::create(MAIN_BRAIN_PATH).expect("Unable to open brain file");
+        File::write(&mut brain, buffer.as_bytes()).expect("Unable to re-write file to brains");
+    }
+
     let mut file: File = File::create(path).expect("Unable to create file");
     File::write(&mut file, content.as_bytes()).expect("Unable to write file to disk");
 }
