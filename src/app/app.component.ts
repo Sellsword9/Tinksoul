@@ -29,6 +29,10 @@ export class AppComponent implements OnInit {
     // Command line focus
     let commandLine = document.getElementById("command-line")! as HTMLTextAreaElement;
     let normalMode = (this.mode === "Normal");
+    function getCurrentFilename() {
+      let x = document.getElementById("filename")! as HTMLTextAreaElement;
+      return x.value;
+    }
     document.addEventListener("keydown", (e) => {
       if (e.key === "i" && normalMode) {
         e.preventDefault();
@@ -59,9 +63,9 @@ export class AppComponent implements OnInit {
         e.preventDefault();
         let command = commandLine.value;
         let contentNow = editor.value;
-        let path = this.filename;
+        let path = getCurrentFilename();
         commandLine.value = "";
-        await invoke('execute', { command, contentNow, path });
+        await invoke('execute', { command, content: contentNow, path });
       }
     });
   }

@@ -32,15 +32,20 @@ fn close() -> () {
 //TODO: Move all helper functions outside main --> Main will be used for tauri commands only
 
 #[command]
-fn execute(command: &str, content: &str, filename: &str) -> () {
+fn execute(command: &str, content: &str, path: &str) -> () {
+    let bfolder: &str = brainparser::MAIN_BRAIN_FOLDER;
+    let complete_path: String = format!("{}/{}", bfolder, path);
+    let complete_path_str: &str = &complete_path;
     print!("Executing command: {}", command);
+    print!("Content: {}", content);
+    print!("Path: {}", complete_path);
     let mut clean_command: String = command.replace(":", "");
     clean_command = clean_command.replace(" ", "");
     clean_command = clean_command.to_lowercase();
     let c: &str = &clean_command;
     match c {
         "q" => close(),
-        "w" => save_file(content, filename),
+        "w" => save_file(content, complete_path_str),
         _ => {
             panic!("Command not found");
         }

@@ -3,7 +3,7 @@ use std::fs;
 pub const MAIN_BRAIN_PATH: &str = "../brains/brain0.tksbrain";
 pub const NOT_A_BRAIN_ERROR: &str = "Not a brain file";
 pub const NOT_A_PATH_ERROR: &str = "Not a valid path. (Use /, instead of \\)";
-
+pub const MAIN_BRAIN_FOLDER: &str = "../brains/";
 /**
  * Accepts a string with the path to a brain and returns the path to the folder
 */

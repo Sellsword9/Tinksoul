@@ -71,8 +71,9 @@
   resize: none;
 }
 
-#mode-display span p {
+#mode-display span textarea {
   display: inline;
   font-size: 2rem;
   text-align: center;
+  background-color: rgba(0, 0, 0, 0);
 }
