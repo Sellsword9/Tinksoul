@@ -35,7 +35,6 @@ fn close() -> () {
 fn execute(command: &str, content: &str, path: &str) -> () {
     let bfolder: &str = brainparser::MAIN_BRAIN_FOLDER;
     let complete_path: String = format!("{}/{}", bfolder, path);
-    let complete_path_str: &str = &complete_path;
     print!("Executing command: {}", command);
     print!("Content: {}", content);
     print!("Path: {}", complete_path);
@@ -45,7 +44,7 @@ fn execute(command: &str, content: &str, path: &str) -> () {
     let c: &str = &clean_command;
     match c {
         "q" => close(),
-        "w" => save_file(content, complete_path_str),
+        "w" => save_file(content, complete_path.as_str()),
         _ => {
             panic!("Command not found");
         }
