@@ -3,10 +3,10 @@
 - [ ] Add functionality to the parser 
 - [ ] Refactor
 # Short-term
-- [ ] Safely save files
+- [x] Safely save files
 - [ ] Safely load (open) files
 - [ ] Add a proper icon
-- [ ] Auto-save
+- [] Auto-save
 - [ ] Be able to create a new brain
-- [ ] Make the brain a registry
-- [ ] Create the brain and temp folder at the start of the app
+- [x] Make the brain a registry
+- [x] Create the brain and temp folder at the start of the app
