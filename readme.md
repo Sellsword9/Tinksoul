@@ -12,7 +12,7 @@
 ### Fast commands:
 In any bash, with git installed, run this:
 ```bash
-git clone https://github.com/sellsword9/tinksoul && cd tinksoul && npm i && cd src-tauri && cargo build && cd .. && mkdir temp && mkdir brains && npm run tauri dev
+git clone https://github.com/sellsword9/tinksoul && cd tinksoul && npm run tks
 ```
 
 
@@ -25,17 +25,9 @@ git clone www.github.com/Sellsword9/tinksoul
 ```bash
 cd tinksoul
 ```
-3. Install the dependencies.
+3. Install the dependencies and run the app.
 ```bash
-npm i && cd src-tauri && cargo build && cd ..
-```
-4. Make some needed folders. (May be fixed)
-```bash
-mkdir temp && mkdir brains
-```
-5. Build the app.
-```bash
-npm run tauri dev
+npm run tks
 ```
 
 
