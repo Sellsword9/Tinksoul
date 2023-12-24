@@ -12,7 +12,7 @@
 ### Fast commands:
 In any bash, with git installed, run this:
 ```bash
-git clone https://github.com/sellsword9/tinksoul && cd tinksoul && npm run tks
+git clone https://github.com/sellsword9/tinksoul && cd tinksoul && npm run tks-build
 ```
 
 
