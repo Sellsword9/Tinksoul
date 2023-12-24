@@ -7,8 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "tauri": "tauri",
-    "tks-run": "npm i && npm run build && npm run setup && cd src-tauri && cargo build && cd .. && npm run tauri dev",
-    "tks-build": "npm i && npm run build && cd src-tauri && cargo build && cd .. && npm run tauri build",
+    "tks-build": "npm i && npm run build && npm run setup && cd src-tauri && cargo build && cd .. && npm run tauri dev",
+    "tks": "npm i && npm run build && cd src-tauri && cargo build && cd .. && npm run tauri build",
     "setup": "mkdir temp && mkdir brains"
   },
   "private": true,
