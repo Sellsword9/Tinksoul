@@ -48,7 +48,7 @@ dist-ssr
 
 # Images will not be commited until production
 #  except for the icon that literally is required for the app to run somehow
-*.png
+# now Linux and Windows have different icons but it works
 *.jpg
 *.svg
 
