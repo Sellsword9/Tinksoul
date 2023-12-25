@@ -35,9 +35,6 @@ fn close() -> () {
 fn execute(command: &str, content: &str, path: &str) -> () {
     let bfolder: &str = brainparser::MAIN_BRAIN_FOLDER;
     let complete_path: String = format!("{}{}", bfolder, path);
-    print!("Executing command: {}", command);
-    print!("Content: {}", content);
-    print!("Path: {}", complete_path);
     let mut clean_command: String = command.replace(":", "");
     clean_command = clean_command.replace(" ", "");
     clean_command = clean_command.to_lowercase();
@@ -45,6 +42,10 @@ fn execute(command: &str, content: &str, path: &str) -> () {
     match c {
         "q" => close(),
         "w" => save_file(content, &complete_path, true),
+        "wq" => {
+            save_file(content, &complete_path, true);
+            close();
+        },
         _ => {
             panic!("Command not found");
         }
